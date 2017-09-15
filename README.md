@@ -6,4 +6,4 @@ The XBM Editor allows you to edit X BitMap graphic files.
 
 | Operating system | Dependencies        |
 | ---------------- | ------------------- |
-| Linux Mint       | Python 2.x          |
+| Linux            | Python 2.x          |
