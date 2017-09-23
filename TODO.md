@@ -1,4 +1,5 @@
 - [x] trim the code down to the necessary parts
+- [ ] use glade?
 - [ ] fix maximize window issue
 - [ ] add edit dialog
 - [ ] accept filename as parameter
