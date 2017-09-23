@@ -1,4 +1,5 @@
 - [x] trim the code down to the necessary parts
+- [ ] add edit dialog
 - [ ] accept filename as parameter
 - [ ] safe as dialog set path
 - [ ] stop safe from open a file safe dialog
