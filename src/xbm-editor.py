@@ -196,27 +196,21 @@ class XBMEditor(gtk.Frame):
             'e':'1110',
             'f':'1111',
         }
-
-
-
-        builder = gtk.Builder()
-        builder.add_from_file("xbm-editor.glade")
         
         self.area = builder.get_object("drawingarea1")
         self.area.show()
-        self.area.set_events(gtk.gdk.EXPOSURE_MASK | gtk.gdk.BUTTON_PRESS_MASK)
         self.area.connect("expose_event", self.draw_xbm)
         self.area.connect("button_press_event", self.button_press)
         self.area.connect("motion_notify_event", self.motion_notify)
+        '''
         self.area.set_events(gtk.gdk.EXPOSURE_MASK
                                                         | gtk.gdk.BUTTON_PRESS_MASK
                                                         | gtk.gdk.LEAVE_NOTIFY_MASK
                                                         | gtk.gdk.POINTER_MOTION_MASK
                                                         | gtk.gdk.POINTER_MOTION_HINT_MASK)
-
+        '''
         self.area.set_size_request(240, 240)
 
-        self.add(self.area)
         self.show_all()
 
     def get_pixel_dim(self, *args):
@@ -299,25 +293,14 @@ class XBMEditor(gtk.Frame):
         return True
 
 class XBMWindow:
-    def display_about(self,*args):
-        dialog = gtk.AboutDialog()
-        dialog.set_title("About XBM Editor")
-        # TODO: Icon from xbm file
-        #dialog.set_logo(gtk.gdk.pixmap_new_from_file('/usr/include/X11/bitmaps/xlogo32'))
-        dialog.set_icon_from_file("./xlogo32.pbm")
-        dialog.set_logo(gtk.gdk.pixbuf_new_from_file('./xlogo32.pbm'))
-        dialog.set_program_name('XBM Editor')
-        dialog.set_version('1.0')
-        dialog.set_comments('Edit X BitMap graphic files')
-        dialog.set_copyright('(C) 2017 Ikem Krueger')
-        dialog.set_website("https://github.com/ikem-krueger/xbm-editor")
-        dialog.run()
-        dialog.destroy()
-
     def __init__(self):
+        global builder
+        
         builder = gtk.Builder()
         builder.add_from_file("xbm-editor.glade")
         
+        self.dialog = builder.get_object("aboutdialog1")
+
         self.window = builder.get_object("window1")
         self.window.connect("destroy", self.destroy)
         self.window.show_all()
@@ -360,8 +343,7 @@ class XBMWindow:
         self.save_as_button = builder.get_object("toolbutton5")
         self.save_as_button.connect("clicked", self.save_xbm, 'save as')
 
-        editor = XBMEditor()
-        self.editor = editor
+        self.editor = XBMEditor()
         #self.editor.load_xbm("new.xbm")
 
     def destroy(self, widget, data=None):
@@ -433,6 +415,10 @@ class XBMWindow:
                 self.file_name = name
             else:
                 self.save_xbm(None, 'save as')
+
+    def display_about(self,*args):
+        self.dialog.run()
+        self.dialog.hide()
 
     def main(self):
         gtk.main()
