@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=XBM Editor
+GenericName=X BitMap Editor
+Comment=Edit X BitMap graphic files
+Exec=xbm-editor
+Icon=xlogo32
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Graphics;2DGraphics;RasterGraphics;GTK;

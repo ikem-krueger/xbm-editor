@@ -1,0 +1,6 @@
+#!/usr/bin/env python2
+
+import os
+
+os.system("/usr/lib/xbm-editor/xbm-editor.py")
+

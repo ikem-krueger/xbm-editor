@@ -319,8 +319,8 @@ class XBMWindow:
     dialog.set_title("About XBM Editor")
     # TODO: Icon from xbm file
     #dialog.set_logo(gtk.gdk.pixmap_new_from_file('/usr/include/X11/bitmaps/xlogo32'))
-    dialog.set_icon_from_file("./xlogo32.pbm")
-    dialog.set_logo(gtk.gdk.pixbuf_new_from_file('./xlogo32.pbm'))
+    dialog.set_icon_from_file("%s/xlogo32.pbm" % self.cwd)
+    dialog.set_logo(gtk.gdk.pixbuf_new_from_file('%s/xlogo32.pbm' % self.cwd))
     dialog.set_program_name('XBM Editor')
     dialog.set_version('1.0')
     dialog.set_comments('Edit X BitMap graphic files')
@@ -330,10 +330,12 @@ class XBMWindow:
     dialog.destroy()
 
   def __init__(self):
+    self.cwd = os.path.dirname(__file__)
+    
     self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
     # TODO: Icon from xbm file
     #self.window.set_icon_from_file(gtk.gdk.pixmap_new_from_file('/usr/include/X11/bitmaps/xlogo32'))
-    self.window.set_icon_from_file("./xlogo32.pbm")
+    self.window.set_icon_from_file("%s/xlogo32.pbm" % self.cwd)
     self.window.set_title("XBM Editor")
     self.window.connect("destroy", self.destroy)
     self.window.set_position(gtk.WIN_POS_CENTER)
@@ -461,7 +463,7 @@ class XBMWindow:
     self.window.show()
 
     self.editor = editor
-    self.editor.load_xbm("new.xbm")
+    self.editor.load_xbm("%s/new.xbm" % self.cwd)
 
   def destroy(self, widget, data=None):
     gtk.main_quit()
@@ -496,7 +498,7 @@ class XBMWindow:
   '''
 
   def new_xbm(self, *args):
-      self.load_xbm("new.xbm")
+      self.load_xbm("%s/new.xbm" % self.cwd)
 
   def open_xbm(self, widget, arg=None, *args):
     filter_all = gtk.FileFilter()
