@@ -7,3 +7,12 @@ The XBM Editor allows you to edit X BitMap graphic files.
 | Operating system | Dependencies         |
 | ---------------- | :------------------- |
 | Linux            | Python 2.x           |
+
+## Installation:
+
+Debian:
+
+```
+make deb
+sudo dpkg -i xbm-editor_*.deb
+```
